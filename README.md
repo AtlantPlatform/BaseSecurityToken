@@ -19,7 +19,7 @@ interface BaseSecurityToken /* is ERC20 */ {
 
 ## License
 
-**For `EIP.md`:**
+**For `erc-1462.md`:**
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
 
 If not stated otherwise, all sources are licensed under Microsoft Reference Source
