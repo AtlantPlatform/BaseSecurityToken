@@ -1,5 +1,4 @@
-ERC-1462: BaseSecurityToken
----------------------------
+# ERC-1462: BaseSecurityToken
 
 An extension to ERC-20 standard token that provides compliance with securities regulations and legal enforceability.
 
@@ -16,6 +15,8 @@ interface BaseSecurityToken /* is ERC-20 */ {
     function lookupDocument(bytes32 _name) external view returns (string, bytes32);
 }
 ```
+
+Join the [discussion](https://ethereum-magicians.org/t/erc-1462-base-security-token/1501)!
 
 ## Reference Implementation
 
