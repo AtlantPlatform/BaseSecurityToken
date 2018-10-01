@@ -1,10 +1,10 @@
-BaseSecurityToken
------------------
+ERC-1462: BaseSecurityToken
+---------------------------
 
 An extension to ERC-20 standard token that provides compliance with securities regulations and legal enforceability.
 
 ```solidity
-interface BaseSecurityToken /* is ERC20 */ {
+interface BaseSecurityToken /* is ERC-20 */ {
     // Checking functions
     function checkTransferAllowed (address from, address to, uint256 value) public view returns (byte);
     function checkTransferFromAllowed (address from, address to, uint256 value) public view returns (byte);
@@ -15,6 +15,19 @@ interface BaseSecurityToken /* is ERC20 */ {
     function attachDocument(bytes32 _name, string _uri, bytes32 _contentHash) external;
     function lookupDocument(bytes32 _name) external view returns (string, bytes32);
 }
+```
+
+## Reference Implementation
+
+Please refer to [IBaseSecurityToken.sol](contracts/IBaseSecurityToken.sol) and [BaseSecurityToken.sol](contracts/BaseSecurityToken.sol).
+
+```
+$ make lint
+solhint "contracts/**/*.sol"
+
+solium -d contracts/
+
+No issues found.
 ```
 
 ## License
