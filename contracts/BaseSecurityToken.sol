@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 
 import "./IBaseSecurityToken.sol";
-import "./openzeppelin/ERC20.sol";
+import "./lib/ERC20.sol";
 
 
 /**
