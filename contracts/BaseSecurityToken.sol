@@ -8,7 +8,7 @@ import "./lib/ERC20.sol";
  * @title BaseSecurityToken implementation
  * @dev see https://github.com/ethereum/EIPs/pull/1462
  */
-contract BaseSecurityToken is IERC20, IBaseSecurityToken {
+contract BaseSecurityToken is IBaseSecurityToken, ERC20 {
     
     struct Document {
         bytes32 name;
@@ -18,14 +18,24 @@ contract BaseSecurityToken is IERC20, IBaseSecurityToken {
 
     mapping (bytes32 => Document) private documents;
 
-    function transfer(address to, uint256 value) external returns (bool) {
-        require(checkTransferAllowed(msg.sender, to, value) == STATUS_ALLOWED, "must be allowed");
-        return IERC20(super).transfer(to, value);
+    function transfer(address to, uint256 value) public returns (bool) {
+        require(checkTransferAllowed(msg.sender, to, value) == STATUS_ALLOWED, "transfer must be allowed");
+        return ERC20.transfer(to, value);
     }
 
-    function transferFrom(address from, address to, uint256 value) external returns (bool) {
-        require(checkTransferFromAllowed(from, to, value) == STATUS_ALLOWED, "must be allowed");
-        return IERC20(super).transferFrom(from, to, value);
+    function transferFrom(address from, address to, uint256 value) public returns (bool) {
+        require(checkTransferFromAllowed(from, to, value) == STATUS_ALLOWED, "transfer must be allowed");
+        return ERC20.transferFrom(from, to, value);
+    }
+
+    function _mint(address account, uint256 amount) internal {
+        require(checkMintAllowed(account, amount) == STATUS_ALLOWED, "mint must be allowed");
+        ERC20._mint(account, amount);
+    }
+
+    function _burn(address account, uint256 amount) internal {
+        require(checkBurnAllowed(account, amount) == STATUS_ALLOWED, "burn must be allowed");
+        ERC20._burn(account, amount);
     }
 
     function attachDocument(bytes32 _name, string _uri, bytes32 _contentHash) external {
