@@ -1,4 +1,4 @@
-# ERC-1462: BaseSecurityToken
+# [ERC-1462](https://eips.ethereum.org/EIPS/eip-1462): BaseSecurityToken
 
 An extension to ERC-20 standard token that provides compliance with securities regulations and legal enforceability.
 
